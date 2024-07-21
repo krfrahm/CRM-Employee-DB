@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 // const express = require('express');
+const sequelize = require('./config/connection');
+
 
 inquirer 
 .prompt([
@@ -30,11 +32,15 @@ inquirer
       },
 
     ])
-    .then((answer) => {
-        const selection = answer.selection 
-        if (selection === 'View All Departments'){
+    // .then((answer) => {
+    //     const selection = answer.selection 
+    //     if (selection === 'View All Departments'){
 
-        }
-    }
-    )
+    //     }
+    // }
+    // )
   
+
+    sequelize.sync({ force: false }).then(() => {
+       console.log('Now listening');
+      });
