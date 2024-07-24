@@ -99,18 +99,13 @@ function addEmployee(){
     {
       type: 'list',
       choices: rows,
-      message:'What department is this role in?',
-      name: 'role'
-    },
-    {
-      type: 'list',
-      choices: rows,
-      message:'What department is this role in?',
+      message:'What role is this employee taking?',
       name: 'role'
     }
+
   ])
-  .then(({employee, salary, role}) => {
-  pool.query("INSERT INTO roles (title, salary, department_id) VALUES ($1, $2, $3)", [title, salary, department])
+  .then(({employee, role}) => {
+  pool.query("INSERT INTO employees (employee, role_id) VALUES ($1, $2)", [employee, role])
   .then(()=>{
     console.log("Role was added!")
     main()
